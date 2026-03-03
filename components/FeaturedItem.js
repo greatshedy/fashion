@@ -1,7 +1,7 @@
-"use client"; // required if using Next 13+ app directory
+"use client";
 
 import React, { useState } from "react";
-import { Heart } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 
 const FeaturedItem = ({ item }) => {
   const [favorited, setFavorited] = useState(false);
@@ -9,22 +9,19 @@ const FeaturedItem = ({ item }) => {
   const toggleFavorite = () => setFavorited(!favorited);
 
   return (
-    <div className="featured-item relative bg-white rounded-xl shadow-lg text-center w-74 pb-2">
-      {/* Favorite Button at Top Right */}
+    <div className="featured-item relative bg-white rounded-xl shadow-lg w-74 pb-6">
+      {/* Favorite Button (Top Right) */}
       <button
         onClick={toggleFavorite}
-        className={`absolute top-2 right-2 px-2 py-2 rounded-lg flex items-center justify-center transition border border-gray-300 ${
-          favorited
-            ? "bg-white text-white"
-            : "bg-white text-white hover:cursor-pointer"
-        }`}
+        className="absolute top-2 right-2 px-2 py-2 rounded-lg flex items-center justify-center transition border border-gray-300 bg-white hover:cursor-pointer"
       >
         <Heart
           className="w-4 h-4 text-[#4C2083]"
           fill={favorited ? "#4C2083" : "none"}
         />
       </button>
-      {/* Featured Tag */}
+
+      {/* Featured Tag (Top Left) */}
       <span className="text-xs font-bold text-white bg-[#4C2083] px-2 py-2 rounded-lg absolute top-2 left-2">
         Featured
       </span>
@@ -39,10 +36,18 @@ const FeaturedItem = ({ item }) => {
       </div>
 
       {/* Item Details */}
-      <h3 className="text-lg font-semibold text-left ml-5">{item.name}</h3>
-      <p className="text-sm text-gray-500 text-left ml-5">{item.category}</p>
-      <p className="text-sm text-gray-500 text-left ml-5">{item.location}</p>
-      <p className="text-md font-bold mt-1 text-left ml-5">${item.price}</p>
+      <div className="px-5">
+        <h3 className="text-lg font-semibold">{item.name}</h3>
+        <p className="text-sm text-gray-500">{item.category}</p>
+        <p className="text-sm text-gray-500">{item.location}</p>
+        <p className="text-md font-bold mt-1">${item.price}</p>
+      </div>
+
+      {/* Rating (Bottom Right) */}
+      <div className="absolute bottom-6 right-2 flex items-center gap-1 bg-white px-2 py-1 rounded-lg shadow-sm border border-gray-200">
+        <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+        <span className="text-sm font-semibold">{item.rating}</span>
+      </div>
     </div>
   );
 };
