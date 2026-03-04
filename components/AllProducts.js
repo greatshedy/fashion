@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import { Heart, Star } from "lucide-react";
 
-const FeaturedItem = ({ item }) => {
+const AllProducts = ({ item }) => {
   const [favorited, setFavorited] = useState(false);
 
   const toggleFavorite = () => setFavorited(!favorited);
 
   return (
-    <div className="featured-item relative bg-white rounded-xl w-74 pb-6">
+    <div className="featured-item relative bg-white rounded-xl w-90 pb-6">
       {/* Favorite Button (Top Right) */}
       <button
         onClick={toggleFavorite}
@@ -22,12 +22,12 @@ const FeaturedItem = ({ item }) => {
       </button>
 
       {/* Featured Tag (Top Left) */}
-      <span className="text-xs font-bold text-white bg-[#4C2083] px-2 py-2 rounded-lg absolute top-2 left-2">
+      {/* <span className="text-xs font-bold text-white bg-[#4C2083] px-2 py-2 rounded-lg absolute top-2 left-2">
         Featured
-      </span>
+      </span> */}
 
       {/* Image */}
-      <div className="mb-2 w-full h-48 rounded-t-xl overflow-hidden">
+      <div className="mb-2 w-full h-60 rounded-t-xl overflow-hidden">
         <img
           src={item.image}
           alt={item.name}
@@ -52,4 +52,4 @@ const FeaturedItem = ({ item }) => {
   );
 };
 
-export default FeaturedItem;
+export default AllProducts;

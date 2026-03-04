@@ -3,6 +3,8 @@ import Filters from "@/components/Filters";
 import { Palette, Ruler, Truck } from "lucide-react";
 import featuredItems from "@/data/featured";
 import Navbar from "@/components/Navbar";
+import allProducts from "@/data/allproducts";
+import AllProducts from "@/components/AllProducts";
 import {
   Search,
   Heart,
@@ -15,6 +17,8 @@ import {
 import React from "react";
 import Footer from "@/components/Footer";
 import Featuredslide from "@/components/Featuredslide";
+import ProductsSlider from "@/components/Allproductslide";
+import DesignerCard from "@/components/DesignerCard";
 
 const page = () => {
   return (
@@ -82,6 +86,21 @@ const page = () => {
       <div className="h-120">
         <Featuredslide />
       </div>
+      {/* <DesignerCard /> */}
+      <div className="ml-40 flex items-center gap-4 mx-auto">
+        <h1 className="text-3xl text-[#4C2083]">All Products</h1>
+        <h1 className="text-3xl">(6 Items)</h1>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 w-3/4 mx-auto pt-12 pb-4">
+        {allProducts.slice(0, 6).map((item) => (
+          <div key={item.id} className="flex justify-center">
+            <AllProducts item={item} />
+          </div>
+        ))}
+      </div>
+      {/* <div className="h-120">
+        <ProductsSlider />
+      </div> */}
       <section className="py-4 text-center">
         <h2 className="text-3xl font-semibold border-t-2 inline-block border-[#4C2083] pb-2 text-[#4C2083]">
           How It Works
@@ -176,10 +195,10 @@ const page = () => {
 
       {/* ================= NEWSLETTER ================= */}
       <section className="bg-[#EDE6F5] py-12 text-center px-6">
-        <h3 className="font-semibold text-lg">
+        <h3 className="font-semibold text-xl text-[#4C2083]">
           Stay Connected with African Fashion
         </h3>
-        <p className="text-gray-600 text-sm mt-2">
+        <p className="text-gray-600 text-md mt-2">
           Get updates on new designers, cultural collections, and exclusive
           offers
         </p>
@@ -188,7 +207,7 @@ const page = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="px-4 py-2 rounded-md w-64 border outline-none"
+            className="px-4 py-2 rounded-md w-2/4 border outline-none bg-white"
           />
           <button className="bg-[#4C2083] text-white px-6 py-2 rounded-md cursor-pointer hover:bg-purple-600 transition">
             Subscribe

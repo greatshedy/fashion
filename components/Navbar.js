@@ -20,7 +20,7 @@ export default function Navbar() {
       <div className="mx-auto px-4 lg:px-12">
         <div className="flex items-end justify-between h-40">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 h-30 w-70 mb-2">
+          <Link href="/" className="flex items-center gap-3 h-25 w-60 mb-4">
             <img
               src="/AlphalliLogo.png"
               alt="Logo"
