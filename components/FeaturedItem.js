@@ -9,7 +9,7 @@ const FeaturedItem = ({ item }) => {
   const toggleFavorite = () => setFavorited(!favorited);
 
   return (
-    <div className="featured-item relative bg-white rounded-xl w-74 pb-6">
+    <div className="featured-item relative bg-white rounded-xl lg:w-74 w-full pb-6">
       {/* Favorite Button (Top Right) */}
       <button
         onClick={toggleFavorite}

@@ -9,7 +9,7 @@ import FeaturedItem from "@/components/FeaturedItem";
 import featuredItems from "@/data/featured";
 import { ArrowUp } from "lucide-react";
 
-function Featuredslide() {
+function Featuredslidemobile() {
   const NextArrow = ({ onClick }) => (
     <div
       onClick={onClick}
@@ -29,32 +29,21 @@ function Featuredslide() {
   );
 
   const settings = {
-    className: "center",
-    centerMode: true,
     autoplay: true,
     infinite: true,
-    centerPadding: "60px",
-    slidesToShow: 3,
+    infinite: true,
     speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 2, centerPadding: "40px" },
-      },
-      {
-        breakpoint: 640,
-        settings: { slidesToShow: 1, centerPadding: "20px" },
-      },
-    ],
   };
 
   return (
-    <div className="slider-container w-full md:w-3/4 mx-auto py-10">
+    <div className="slider-container w-full py-10">
       <Slider {...settings}>
         {featuredItems.map((item) => (
-          <div key={item.id} className="mx-auto px-2">
+          <div key={item.id} className="px-8">
             <FeaturedItem item={item} />
           </div>
         ))}
@@ -63,4 +52,4 @@ function Featuredslide() {
   );
 }
 
-export default Featuredslide;
+export default Featuredslidemobile;
