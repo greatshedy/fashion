@@ -1,50 +1,73 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { useRouter } from "next/navigation";
 import { Heart, Star } from "lucide-react";
+import useFavoritesStore, { useProductStore } from "@/store";
 
 const AllProducts = ({ item }) => {
-  const [favorited, setFavorited] = useState(false);
+  const router = useRouter();
+  const { toggleFavorite, isFavorited } = useFavoritesStore();
+  const setSelectedProduct = useProductStore((s) => s.setSelectedProduct);
 
-  const toggleFavorite = () => setFavorited(!favorited);
+  const handleCardClick = () => {
+    setSelectedProduct(item); // store the full item object
+    router.push(`/productsdetails/${item.id}`); // navigate to detail page
+  };
 
   return (
-    <div className="featured-item relative bg-white rounded-xl w-90 pb-6">
-      {/* Favorite Button (Top Right) */}
+    <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300 group cursor-pointer">
+      {/* Favorite Button — e.stopPropagation so card click doesn't also fire */}
       <button
-        onClick={toggleFavorite}
-        className="absolute top-2 right-2 px-2 py-2 rounded-lg flex items-center justify-center transition border border-gray-300 bg-white hover:cursor-pointer"
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleFavorite({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            image: item.image,
+          });
+        }}
+        className="absolute top-3 right-3 z-20 bg-white border border-gray-200 p-2 rounded-lg hover:border-[#4C2083] transition-colors"
       >
         <Heart
-          className="w-4 h-4 text-[#4C2083]"
-          fill={favorited ? "#4C2083" : "none"}
+          className="w-4 h-4"
+          fill={isFavorited(item.id) ? "#4C2083" : "none"}
+          stroke={isFavorited(item.id) ? "#4C2083" : "currentColor"}
         />
       </button>
 
-      {/* Featured Tag (Top Left) */}
-      {/* <span className="text-xs font-bold text-white bg-[#4C2083] px-2 py-2 rounded-lg absolute top-2 left-2">
-        Featured
-      </span> */}
+      {/* Featured Badge */}
+      {item.featured && (
+        <span className="absolute top-3 left-3 z-20 bg-[#4C2083] text-white text-xs font-semibold px-2 py-1 rounded-lg">
+          Featured
+        </span>
+      )}
 
-      {/* Image */}
-      <div className="mb-2 w-full h-60 rounded-t-xl overflow-hidden">
-        <img
-          src={item.image}
-          alt={item.name}
-          className="w-full h-full object-cover"
-        />
+      {/* Clickable card body */}
+      <div onClick={handleCardClick}>
+        {/* Image */}
+        <div className="h-60 w-full overflow-hidden">
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+          />
+        </div>
+
+        {/* Details */}
+        <div className="p-4 pb-10">
+          <h3 className="text-lg font-semibold text-[#4C2083]">{item.name}</h3>
+          <p className="text-sm text-gray-500">{item.category}</p>
+          <p className="text-sm font-semibold text-gray-600">{item.location}</p>
+          <p className="text-lg font-bold text-[#4C2083] mt-1">
+            ₦{Number(item.price).toLocaleString()}
+          </p>
+        </div>
       </div>
 
-      {/* Item Details */}
-      <div className="px-5">
-        <h3 className="text-lg font-semibold text-[#4C2083]">{item.name}</h3>
-        <p className="text-sm text-gray-500">{item.category}</p>
-        <p className="text-sm text-gray-500 font-bold">{item.location}</p>
-        <p className="text-md font-bold mt-1 text-[#4C2083]">${item.price}</p>
-      </div>
-
-      {/* Rating (Bottom Right) */}
-      <div className="absolute bottom-6 right-2 flex items-center gap-1 bg-white px-2 py-1 rounded-lg shadow-sm border border-gray-200">
+      {/* Rating */}
+      <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-white px-2 py-1 rounded-md shadow border">
         <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
         <span className="text-sm font-semibold">{item.rating}</span>
       </div>

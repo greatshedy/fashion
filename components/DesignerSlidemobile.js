@@ -43,7 +43,7 @@ function DesignerSlidemobile() {
   };
 
   return (
-    <div className="slider-container w-5/6 mx-auto h-fit">
+    <div className="slider-container w-6/6 mx-auto h-fit">
       <Slider {...settings}>
         {designers
           .filter((designer) => designer.featured)

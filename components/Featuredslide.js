@@ -8,6 +8,8 @@ import Slider from "react-slick";
 import FeaturedItem from "@/components/FeaturedItem";
 import featuredItems from "@/data/featured";
 import { ArrowUp } from "lucide-react";
+import AllProducts from "./AllProducts";
+import allProducts from "@/data/allproducts";
 
 function Featuredslide() {
   const NextArrow = ({ onClick }) => (
@@ -53,11 +55,13 @@ function Featuredslide() {
   return (
     <div className="slider-container w-full md:w-3/4 mx-auto py-10">
       <Slider {...settings}>
-        {featuredItems.map((item) => (
-          <div key={item.id} className="mx-auto px-2">
-            <FeaturedItem item={item} />
-          </div>
-        ))}
+        {allProducts
+          .filter((item) => item.featured)
+          .map((item) => (
+            <div key={item.id} className="mx-auto px-2">
+              <AllProducts item={item} />
+            </div>
+          ))}
       </Slider>
     </div>
   );
