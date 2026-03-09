@@ -89,6 +89,10 @@ const allProducts = [
     featured: true,
     image:
       "https://images.unsplash.com/photo-1727515546577-f7d82a47b51d?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    designer: "Donald Trump",
+    fabric: "Leather",
+    category: "Modern Casual",
+    sizes: ["S", "M", "L", "XL", "XXL"],
   },
 
   {
