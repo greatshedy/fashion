@@ -2,8 +2,12 @@
 
 import React from "react";
 import { Heart, MapPin, Star } from "lucide-react";
+import useFavoritesStore from "@/store";
 
 export default function DesignerCard({ designer }) {
+  // const [favorited, setFavorited] = useState(false);
+  const { toggleFavorite, isFavorited } = useFavoritesStore();
+  // const toggleFavorite = () => setFavorited(!favorited);
   // prevent crash if designer is undefined
   if (!designer) return null;
 
@@ -23,8 +27,21 @@ export default function DesignerCard({ designer }) {
           </span>
         )}
 
-        <div className="absolute top-3 right-3 bg-white p-2 rounded-md shadow cursor-pointer hover:bg-gray-100">
-          <Heart size={16} className="text-[#4C2083]" />
+        <div
+          onClick={() =>
+            toggleFavorite({
+              id: designer.id,
+              name: designer.name,
+              price: designer.price,
+              image: designer.image,
+            })
+          }
+          className="absolute top-3 right-3 bg-white p-2 rounded-md shadow cursor-pointer hover:bg-gray-100"
+        >
+          <Heart
+            size={16}
+            fill={isFavorited(designer.id) ? "#4C2083" : "none"}
+          />
         </div>
       </div>
 
