@@ -15,7 +15,7 @@ function Featuredslidemobile() {
   const NextArrow = ({ onClick }) => (
     <div
       onClick={onClick}
-      className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-[#4C2083] text-white h-10 w-10 rounded-full cursor-pointer hover:bg-[#2E1258] shadow-lg flex items-center justify-center"
+      className="absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-[#4C2083] text-white h-10 w-10 rounded-full cursor-pointer hover:bg-[#2E1258] shadow-lg flex items-center justify-center"
     >
       <ArrowUp size={18} className="rotate-90" />
     </div>
@@ -24,7 +24,7 @@ function Featuredslidemobile() {
   const PrevArrow = ({ onClick }) => (
     <div
       onClick={onClick}
-      className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-[#4C2083] text-white h-10 w-10 rounded-full cursor-pointer hover:bg-[#2E1258] shadow-lg flex items-center justify-center"
+      className="absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-[#4C2083] text-white h-10 w-10 rounded-full cursor-pointer hover:bg-[#2E1258] shadow-lg flex items-center justify-center"
     >
       <ArrowUp size={18} className="rotate-270" />
     </div>
@@ -42,12 +42,12 @@ function Featuredslidemobile() {
   };
 
   return (
-    <div className="slider-container w-full py-10">
+    <div className="slider-container w-3/4 py-10 mx-auto">
       <Slider {...settings}>
         {allProducts
           .filter((item) => item.featured)
           .map((item) => (
-            <div key={item.id} className="px-4">
+            <div key={item.id} className="px-4 mx-auto">
               <AllProducts item={item} />
             </div>
           ))}

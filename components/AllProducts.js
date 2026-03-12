@@ -47,7 +47,7 @@ const AllProducts = ({ item }) => {
       {/* Clickable card body */}
       <div onClick={handleCardClick}>
         {/* Image */}
-        <div className="h-60 w-full overflow-hidden">
+        <div className="h-60 w-90 overflow-hidden">
           <img
             src={item.image}
             alt={item.name}

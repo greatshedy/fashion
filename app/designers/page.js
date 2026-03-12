@@ -65,7 +65,7 @@ const page = () => {
       <div className="h-fit lg:hidden mx-auto">
         <DesignerSlidemobile />
       </div>
-      <div className="flex items-center lg:items-start justify-center lg:justify-start gap-2 lg:gap-4 mx-auto lg:ml-40 text-left mt-10">
+      <div className="flex items-center lg:items-start justify-center lg:justify-start gap-2 lg:gap-4 mx-auto lg:ml-40 text-left mt-12">
         <h1 className="text-2xl md:text-3xl text-[#4C2083]">All Products</h1>
         <h1 className="text-xl md:text-3xl text-gray-600">(7 Items)</h1>
       </div>
