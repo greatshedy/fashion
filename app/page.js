@@ -57,7 +57,7 @@ const page = () => {
         </div>
       </div>
       <div className="h-fit">
-        <div className="flex flex-col lg:flex-row gap-3 pt-3 items-center w-full mx-auto px-4 lg:px-12">
+        <div className="flex gap-3 pt-3 items-center w-full mx-auto px-4 lg:px-12">
           <div className="relative w-full">
             <Search
               size={18}
@@ -71,9 +71,9 @@ const page = () => {
             />
           </div>
 
-          <button className="flex items-center gap-2 border border-black text-[#4C2083] px-5 w-full lg:w-1/11 py-2 rounded-lg hover:bg-purple-600 transition">
-            <ListFilter size={18} />
-            Search
+          <button className="flex items-center gap-2 border border-black text-[#4C2083] p-1 w-1/11 py-2 rounded-lg hover:bg-purple-600 transition ">
+            <ListFilter size={18} className="text-[#4C2083]" />
+            <h1 className="lg:flex hidden">Search</h1>
           </button>
         </div>
         <Filters />
@@ -85,18 +85,18 @@ const page = () => {
           />
         </div>
       </div>
-      <div className="h-85 lg:block hidden">
+      <div className="h-fit lg:block hidden">
         <Featuredslide />
       </div>
-      <div className="h-85 lg:hidden mx-auto">
+      <div className="h-fit lg:hidden mx-auto">
         <Featuredslidemobile />
       </div>
       {/* <DesignerCard /> */}
-      <div className="flex items-center lg:items-start justify-center lg:justify-start gap-2 lg:gap-4 mx-auto lg:ml-40 text-left mt-20">
+      <div className="flex items-center lg:items-start justify-center lg:justify-start gap-2 lg:gap-4 mx-auto lg:ml-40 text-left lg:mt-12 px-4">
         <h1 className="text-2xl md:text-3xl text-[#4C2083]">All Products</h1>
         <h1 className="text-xl md:text-3xl text-gray-600">(6 Items)</h1>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 lg:w-3/4 w-full mx-auto pt-12 pb-4">
+      <div className="lg:grid flex flex-col lg:grid-cols-3 gap-8 lg:w-3/4 w-full mx-auto pt-12 pb-4">
         {allProducts.slice(0, 6).map((item) => (
           <div key={item.id} className="flex justify-center">
             <AllProducts item={item} />

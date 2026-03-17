@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function Filters() {
   const [active, setActive] = useState("All");
+  const scrollRef = useRef(null);
 
   const categories = [
     "All",
@@ -16,21 +17,40 @@ export default function Filters() {
   ];
 
   return (
-    <div className="flex flex-wrap gap-4 py-6 w-full mx-auto px-4 lg:px-12 items-center justify-center">
-      {categories.map((category) => (
-        <button
-          key={category}
-          onClick={() => setActive(category)}
-          className={`px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300
-            ${
-              active === category
-                ? "bg-purple-700 text-white shadow-md"
-                : "bg-gray-100 text-gray-700 hover:bg-purple-100 hover:text-purple-700"
-            }`}
-        >
-          {category}
-        </button>
-      ))}
+    <div className="w-full py-6 px-4 lg:px-12">
+      {/* Mobile: single scrollable row | Desktop: wrapping flex */}
+      <div
+        ref={scrollRef}
+        className="
+          flex gap-3
+          overflow-x-auto lg:overflow-x-visible
+          flex-nowrap lg:flex-wrap
+          lg:justify-center
+          scrollbar-none
+          [-ms-overflow-style:none]
+          [scrollbar-width:none]
+          [&::-webkit-scrollbar]:hidden
+          snap-x snap-mandatory
+        "
+      >
+        {categories.map((category) => (
+          <button
+            key={category}
+            onClick={() => setActive(category)}
+            className={`
+              px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300
+              whitespace-nowrap shrink-0 snap-start
+              ${
+                active === category
+                  ? "bg-purple-700 text-white shadow-md"
+                  : "bg-gray-100 text-gray-700 hover:bg-purple-100 hover:text-purple-700"
+              }
+            `}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
